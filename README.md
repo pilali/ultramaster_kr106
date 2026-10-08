@@ -78,6 +78,15 @@ cmake --build build --config Release
 
 Run `make help` for all available targets.
 
+### MOD (mod-host / mod-ui)
+
+A separate headless LV2 build with a tabbed modgui for MOD devices and
+mod-ui (e.g. on a Raspberry Pi) lives in [`mod/`](mod/README.md):
+
+```bash
+make mod      # -> mod/build/kr106-mod.lv2
+```
+
 ## Project Structure
 
 ```

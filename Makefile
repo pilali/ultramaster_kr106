@@ -1,7 +1,7 @@
 BUILD_DIR = build-juce
 CONFIG   ?= Debug
 
-.PHONY: build run debug reaper clean deps help
+.PHONY: build run debug reaper clean deps help mod
 
 build:
 	# Touch .cpp so CMake picks up header-only DSP changes
@@ -26,6 +26,10 @@ reaper: build
 clean:
 	rm -rf $(BUILD_DIR)
 
+# Headless LV2 bundle with modgui for MOD (mod-host / mod-ui), no JUCE
+mod:
+	$(MAKE) -C mod
+
 # Linux: install JUCE build dependencies
 deps:
 	sudo apt-get update
@@ -46,6 +50,7 @@ help:
 	@echo "  make reaper       Build and restart Reaper (macOS)"
 	@echo "  make deps         Install Linux build dependencies (apt)"
 	@echo "  make clean        Remove build directory"
+	@echo "  make mod          Build the MOD LV2 bundle (mod/build/kr106-mod.lv2)"
 	@echo ""
 	@echo "  CONFIG=Release make build  — release build"
 	@echo ""
