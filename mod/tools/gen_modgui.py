@@ -284,84 +284,95 @@ def hsw(symbol, label, left, right):
 
 CHORUS = {'type': 'chorus'}
 
-# Tabs -> sections. Sections are laid out left to right like the Juno panel.
+# Tabs -> sub-tabs -> sections. Sections are laid out left to right like the
+# Juno panel; each sub-tab holds what fits in the panel width.
+DCO = ('DCO', 'red', [
+    sw('dco_range', 'RANGE', ["16'", "8'", "4'"]),
+    fader('dco_lfo', 'LFO'),
+    fader('dco_pwm', 'PWM'),
+    sw('pwm_mode', ' ', ['LFO', 'MAN', 'ENV']),
+    pad('dco_pulse', 'PULSE', 'yellow'),
+    pad('dco_saw', 'SAW', 'yellow'),
+    pad('dco_sub_on', 'SUB', 'orange'),
+    fader('dco_sub', 'SUB'),
+    fader('dco_noise', 'NOISE'),
+])
+HPF = ('HPF', 'red', [fader('hpf', 'FREQ', 'hpf')])
+VCF = ('VCF', 'red', [
+    fader('vcf_freq', 'FREQ'),
+    fader('vcf_res', 'RES'),
+    sw('vcf_env_inv', 'ENV', ['NORM', 'INV']),
+    fader('vcf_env', ' '),
+    fader('vcf_lfo', 'LFO'),
+    fader('vcf_kbd', 'KYBD'),
+])
+VCA = ('VCA', 'red', [
+    sw('vca_mode', ' ', ['ENV', 'GATE']),
+    fader('vca_level', 'LEVEL'),
+])
+ENV = ('ENV', 'red', [fader('env_a', 'A'), fader('env_d', 'D'), fader('env_s', 'S'), fader('env_r', 'R')])
+CHORUS_SEC = ('CHORUS', 'blue', [CHORUS])
+ARP = ('ARPEGGIO', 'blue', [
+    pad('arp_on', 'ON/OFF', 'yellow'),
+    sw('arp_mode', 'MODE', ['UP', 'U&D', 'DN']),
+    sw('arp_range', 'RANGE', ['1', '2', '3']),
+    fader('arp_rate', 'RATE'),
+    {'type': 'stack', 'items': [pad('arp_sync', 'SYNC', 'cream'), pad('arp_limit', 'KBD LIM', 'cream')]},
+    select('arp_div', 'SYNC DIV', 92),
+])
+LFO = ('LFO', 'red', [
+    fader('lfo_rate', 'RATE'),
+    fader('lfo_delay', 'DELAY'),
+    sw('lfo_mode', 'MODE', ['AUTO', 'MAN']),
+    {'type': 'stack', 'items': [pad('lfo_trig', 'TRIG', 'grey'), pad('lfo_sync', 'SYNC', 'cream')]},
+    select('lfo_div', 'SYNC DIV', 92),
+])
+PERF = ('PERFORMANCE', 'red', [
+    pad('hold', 'HOLD', 'yellow'),
+    sw('porta_mode', 'ASSIGN', ['MONO', 'POLY I', 'POLY II']),
+    fader('porta_rate', 'PORTA'),
+    fader('bender', 'BEND', 'bi'),
+    fader('bend_dco', 'DCO'),
+    fader('bend_vcf', 'VCF'),
+    fader('bend_lfo', 'LFO'),
+])
+MASTER = ('MASTER', 'red', [
+    fader('volume', 'VOLUME'),
+    fader('tuning', 'TUNE', 'bi'),
+    select('transpose', 'TRANSPOSE', 70),
+])
+MODEL = ('MODEL', 'red', [hsw('model', 'ENGINE', '60', '106')])
+VOICES = ('VOICES', 'blue', [
+    select('voices', 'VOICES', 56),
+    select('osc_mode', 'OSCILLATOR', 96),
+    select('oversample', 'VCF OVERSAMPLE', 72),
+])
+KEYBOARD = ('KEYBOARD', 'blue', [
+    pad('ignore_vel', 'NO VEL', 'cream'),
+    pad('mono_retrig', 'RETRIG', 'cream'),
+])
+INFO = ('INFO', 'grey', [{'type': 'info'}])
+
 TABS = [
     ('sound', 'VOICE', [
-        ('DCO', 'red', [
-            sw('dco_range', 'RANGE', ["16'", "8'", "4'"]),
-            fader('dco_lfo', 'LFO'),
-            fader('dco_pwm', 'PWM'),
-            sw('pwm_mode', ' ', ['LFO', 'MAN', 'ENV']),
-            pad('dco_pulse', 'PULSE', 'yellow'),
-            pad('dco_saw', 'SAW', 'yellow'),
-            pad('dco_sub_on', 'SUB', 'orange'),
-            fader('dco_sub', 'SUB'),
-            fader('dco_noise', 'NOISE'),
-        ]),
-        ('HPF', 'red', [fader('hpf', 'FREQ', 'hpf')]),
-        ('VCF', 'red', [
-            fader('vcf_freq', 'FREQ'),
-            fader('vcf_res', 'RES'),
-            sw('vcf_env_inv', 'ENV', ['NORM', 'INV']),
-            fader('vcf_env', ' '),
-            fader('vcf_lfo', 'LFO'),
-            fader('vcf_kbd', 'KYBD'),
-        ]),
-        ('VCA', 'red', [
-            sw('vca_mode', ' ', ['ENV', 'GATE']),
-            fader('vca_level', 'LEVEL'),
-        ]),
-        ('ENV', 'red', [fader('env_a', 'A'), fader('env_d', 'D'), fader('env_s', 'S'), fader('env_r', 'R')]),
-        ('CHORUS', 'blue', [CHORUS]),
+        ('dco', 'DCO · HPF', [DCO, HPF]),
+        ('vcf', 'VCF · VCA', [VCF, VCA]),
+        ('env', 'ENV · CHORUS', [ENV, CHORUS_SEC]),
     ]),
-    ('mod', 'ARP · LFO · PERFORM', [
-        ('ARPEGGIO', 'blue', [
-            pad('arp_on', 'ON/OFF', 'yellow'),
-            sw('arp_mode', 'MODE', ['UP', 'U&D', 'DN']),
-            sw('arp_range', 'RANGE', ['1', '2', '3']),
-            fader('arp_rate', 'RATE'),
-            {'type': 'stack', 'items': [pad('arp_sync', 'SYNC', 'cream'), pad('arp_limit', 'KBD LIM', 'cream')]},
-            select('arp_div', 'SYNC DIV', 92),
-        ]),
-        ('LFO', 'red', [
-            fader('lfo_rate', 'RATE'),
-            fader('lfo_delay', 'DELAY'),
-            sw('lfo_mode', 'MODE', ['AUTO', 'MAN']),
-            {'type': 'stack', 'items': [pad('lfo_trig', 'TRIG', 'grey'), pad('lfo_sync', 'SYNC', 'cream')]},
-            select('lfo_div', 'SYNC DIV', 92),
-        ]),
-        ('PERFORMANCE', 'red', [
-            pad('hold', 'HOLD', 'yellow'),
-            sw('porta_mode', 'ASSIGN', ['MONO', 'POLY I', 'POLY II']),
-            fader('porta_rate', 'PORTA'),
-            fader('bender', 'BEND', 'bi'),
-            fader('bend_dco', 'DCO'),
-            fader('bend_vcf', 'VCF'),
-            fader('bend_lfo', 'LFO'),
-        ]),
+    ('mod', 'ARP · LFO · PERF', [
+        ('arp', 'ARPEGGIO', [ARP]),
+        ('lfo', 'LFO', [LFO]),
+        ('perf', 'PERFORMANCE', [PERF]),
     ]),
     ('setup', 'SETUP', [
-        ('MASTER', 'red', [
-            fader('volume', 'VOLUME'),
-            fader('tuning', 'TUNE', 'bi'),
-            select('transpose', 'TRANSPOSE', 70),
-        ]),
-        ('MODEL', 'red', [hsw('model', 'ENGINE', '60', '106')]),
-        ('VOICES', 'blue', [
-            select('voices', 'VOICES', 60),
-            select('osc_mode', 'OSCILLATOR', 96),
-            select('oversample', 'VCF OVERSAMPLE', 72),
-        ]),
-        ('KEYBOARD', 'blue', [
-            pad('ignore_vel', 'NO VEL', 'cream'),
-            pad('mono_retrig', 'RETRIG', 'cream'),
-        ]),
-        ('INFO', 'grey', [{'type': 'info'}]),
+        ('master', 'MASTER · MODEL', [MASTER, MODEL]),
+        ('voices', 'VOICES · KEYS', [VOICES, KEYBOARD]),
+        ('info', 'INFO', [INFO]),
     ]),
 ]
 
-PANEL_W = 1060
-PANEL_H = 236
+PANEL_W = 460
+PANEL_H = 284
 
 
 def esc(s):
@@ -426,16 +437,22 @@ def control_html(c, ports):
 def build_html(ports):
     tabs = ''.join('<div class="kr-tab%s" data-tab="%s">%s</div>' % (' kr-active' if i == 0 else '', key, esc(title))
                    for i, (key, title, _) in enumerate(TABS))
-    pages = []
-    for i, (key, title, sections) in enumerate(TABS):
-        secs = []
-        for name, color, controls in sections:
-            body = ''.join(control_html(c, ports) for c in controls)
-            secs.append('<div class="kr-section kr-%s"><div class="kr-sec-title">%s</div>'
-                        '<div class="kr-sec-body">%s</div><div class="kr-sec-foot"></div></div>'
-                        % (color, esc(name), body))
-        pages.append('<div class="kr-page%s" data-page="%s">%s</div>'
-                     % (' kr-active' if i == 0 else '', key, ''.join(secs)))
+    subnavs, pages = [], []
+    for i, (key, title, subs) in enumerate(TABS):
+        subnavs.append('<div class="kr-subnav%s" data-tab="%s">%s</div>' % (
+            ' kr-active' if i == 0 else '', key,
+            ''.join('<div class="kr-subtab%s" data-tab="%s" data-sub="%s"><span class="kr-subled"></span>%s</div>'
+                    % (' kr-active' if j == 0 else '', key, sub, esc(stitle))
+                    for j, (sub, stitle, _) in enumerate(subs))))
+        for j, (sub, stitle, sections) in enumerate(subs):
+            secs = []
+            for name, color, controls in sections:
+                body = ''.join(control_html(c, ports) for c in controls)
+                secs.append('<div class="kr-section kr-%s"><div class="kr-sec-title">%s</div>'
+                            '<div class="kr-sec-body">%s</div><div class="kr-sec-foot"></div></div>'
+                            % (color, esc(name), body))
+            pages.append('<div class="kr-page%s" data-page="%s/%s">%s</div>'
+                         % (' kr-active' if i == 0 and j == 0 else '', key, sub, ''.join(secs)))
 
     jacks_in = '''
     <div class="mod-pedal-input">
@@ -464,12 +481,12 @@ def build_html(ports):
             <div class="kr-power-lbl">POWER</div>
         </div>
         <div class="kr-logo"><span class="kr-logo-brand">ULTRAMASTER</span><span class="kr-logo-model">KR-106</span></div>
-        <div class="kr-tabs">%s</div>
         <div class="kr-lcd"><div class="kr-lcd-name">KR-106</div><div class="kr-lcd-value">READY</div></div>
     </div>
+    <div class="kr-nav"><div class="kr-tabs">%s</div>%s</div>
     <div class="kr-pages">%s</div>%s%s
 </div>
-''' % (tabs, ''.join(pages), jacks_in, jacks_out)
+''' % (tabs, ''.join(subnavs), ''.join(pages), jacks_in, jacks_out)
 
 
 CSS = r'''/* Ultramaster KR-106 modgui -- generated by tools/gen_modgui.py */
@@ -562,14 +579,21 @@ CSS = r'''/* Ultramaster KR-106 modgui -- generated by tools/gen_modgui.py */
 .kr106{{{cns}}} .kr-power-sw.off::after { top: 10px; background: linear-gradient(180deg, #6d6d6d, #cfcfcf); }
 .kr106{{{cns}}} .kr-power-lbl { position: absolute; left: 40px; top: 9px; font-size: 11px; letter-spacing: 0.5px; }
 
-.kr106{{{cns}}} .kr-logo { display: flex; align-items: baseline; margin: 0 26px 0 6px; flex: none; }
-.kr106{{{cns}}} .kr-logo-brand { font-size: 12px; font-weight: 600; letter-spacing: 2px; color: #c9c9c4; margin-right: 8px; }
-.kr106{{{cns}}} .kr-logo-model { font-size: 27px; font-weight: 700; letter-spacing: 1px; color: #fff; }
+.kr106{{{cns}}} .kr-logo { display: flex; align-items: baseline; margin: 0 0 0 4px; flex: none; }
+.kr106{{{cns}}} .kr-logo-brand { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; color: #c9c9c4; margin-right: 6px; }
+.kr106{{{cns}}} .kr-logo-model { font-size: 25px; font-weight: 700; letter-spacing: 1px; color: #fff; }
 
-.kr106{{{cns}}} .kr-tabs { display: flex; height: 26px; flex: 1; }
+/* ---- navigation: main tabs, then one row of sub-tabs per main tab ---- */
+.kr106{{{cns}}} .kr-nav {
+    position: absolute; left: 12px; right: 12px; top: 45px; height: 56px;
+    padding: 4px 8px 0; z-index: 3;
+    background: linear-gradient(180deg, #1d1d1f, #252527);
+    border-bottom: 1px solid #111;
+}
+.kr106{{{cns}}} .kr-tabs { display: flex; height: 25px; }
 .kr106{{{cns}}} .kr-tab {
-    position: relative;
-    padding: 0 14px; margin-right: 6px; line-height: 24px; font-size: 13px; letter-spacing: 1px;
+    flex: 1; text-align: center;
+    margin: 0 2px; line-height: 23px; font-size: 13px; letter-spacing: 1px; white-space: nowrap;
     color: #bdbdb8; cursor: pointer;
     border: 1px solid #3a3a3d; border-radius: 2px;
     background: linear-gradient(180deg, #2c2c2f, #1b1b1d);
@@ -580,9 +604,27 @@ CSS = r'''/* Ultramaster KR-106 modgui -- generated by tools/gen_modgui.py */
     background: linear-gradient(180deg, #d42a22, #9e1612);
     box-shadow: 0 0 6px rgba(220,40,30,0.35);
 }
+.kr106{{{cns}}} .kr-subnav { display: none; height: 22px; margin-top: 4px; }
+.kr106{{{cns}}} .kr-subnav.kr-active { display: flex; }
+.kr106{{{cns}}} .kr-subtab {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    margin: 0 2px; height: 22px; font-size: 11.5px; letter-spacing: 0.8px; white-space: nowrap;
+    color: #a9a9a4; cursor: pointer;
+    border-radius: 2px; background: #161617; border: 1px solid #2f2f32;
+}
+.kr106{{{cns}}} .kr-subtab:hover { color: #fff; }
+.kr106{{{cns}}} .kr-subtab.kr-active { color: #fff; background: #2e2e31; border-color: #55555a; }
+.kr106{{{cns}}} .kr-subled {
+    width: 7px; height: 7px; border-radius: 50%; margin-right: 6px; flex: none;
+    background: radial-gradient(circle at 35% 30%, #7a2a24, #3a0d0b 70%); box-shadow: 0 0 0 1px #000;
+}
+.kr106{{{cns}}} .kr-subtab.kr-active .kr-subled {
+    background: radial-gradient(circle at 35% 30%, #ffd6cc, #f01a10 55%, #a00 100%);
+    box-shadow: 0 0 0 1px #000, 0 0 6px 1px rgba(255,40,30,0.6);
+}
 
 .kr106{{{cns}}} .kr-lcd {
-    width: 208px; height: 30px; padding: 2px 8px;
+    width: 150px; height: 30px; padding: 2px 7px; margin-left: auto;
     background: linear-gradient(180deg, #060a06, #0c140c);
     border: 1px solid #000; border-radius: 2px;
     box-shadow: inset 0 0 6px rgba(0,0,0,0.9), 0 0 0 1px #333;
@@ -594,7 +636,7 @@ CSS = r'''/* Ultramaster KR-106 modgui -- generated by tools/gen_modgui.py */
 .kr106{{{cns}}} .kr-lcd-value { font-size: 13px; line-height: 15px; }
 
 /* ---- pages & sections ---- */
-.kr106{{{cns}}} .kr-pages { position: absolute; left: 12px; right: 12px; top: 45px; bottom: 0; pointer-events: none; }
+.kr106{{{cns}}} .kr-pages { position: absolute; left: 12px; right: 12px; top: 102px; bottom: 0; pointer-events: none; }
 .kr106{{{cns}}} .kr-page {
     position: absolute; left: 0; top: 0; right: 0; bottom: 0;
     display: flex; align-items: stretch; justify-content: center;
@@ -727,7 +769,7 @@ CSS = r'''/* Ultramaster KR-106 modgui -- generated by tools/gen_modgui.py */
 
 /* MOD jacks sit outside the panel */
 .kr106{{{cns}}} .mod-pedal-input,
-.kr106{{{cns}}} .mod-pedal-output { top: 92px; }
+.kr106{{{cns}}} .mod-pedal-output { top: 120px; }
 '''
 
 
@@ -738,12 +780,21 @@ function (event, funcs) {
 
     var PORTS = @PORTS@;
 
-    function showTab(name) {
-        icon.find('.kr-tab').removeClass('kr-active');
-        icon.find('.kr-tab[data-tab="' + name + '"]').addClass('kr-active');
+    function showSub(tab, sub) {
+        icon.find('.kr-subtab[data-tab="' + tab + '"]').removeClass('kr-active');
+        icon.find('.kr-subtab[data-tab="' + tab + '"][data-sub="' + sub + '"]').addClass('kr-active');
         icon.find('.kr-page').removeClass('kr-active');
-        icon.find('.kr-page[data-page="' + name + '"]').addClass('kr-active');
-        data.tab = name;
+        icon.find('.kr-page[data-page="' + tab + '/' + sub + '"]').addClass('kr-active');
+        data.sub[tab] = sub;
+    }
+
+    function showTab(tab) {
+        icon.find('.kr-tab').removeClass('kr-active');
+        icon.find('.kr-tab[data-tab="' + tab + '"]').addClass('kr-active');
+        icon.find('.kr-subnav').removeClass('kr-active');
+        icon.find('.kr-subnav[data-tab="' + tab + '"]').addClass('kr-active');
+        data.tab = tab;
+        showSub(tab, data.sub[tab] || icon.find('.kr-subtab[data-tab="' + tab + '"]').first().attr('data-sub'));
     }
 
     function updateChorus(mode) {
@@ -783,11 +834,16 @@ function (event, funcs) {
             if (event.ports[i].symbol === 'chorus') data.chorus = event.ports[i].value;
         }
         updateChorus(data.chorus);
+        data.sub = data.sub || {};
         showTab(data.tab || 'sound');
 
         icon.find('.kr-tab').on('click', function (e) {
             e.stopPropagation();
             showTab($(this).attr('data-tab'));
+        });
+        icon.find('.kr-subtab').on('click', function (e) {
+            e.stopPropagation();
+            showSub($(this).attr('data-tab'), $(this).attr('data-sub'));
         });
 
         icon.find('.kr-chorus').on('mousedown', function (e) {
@@ -856,10 +912,11 @@ def main():
             used.append('chorus')
         elif 'symbol' in c:
             used.append(c['symbol'])
-    for _, _, sections in TABS:
-        for _, _, controls in sections:
-            for c in controls:
-                collect(c)
+    for _, _, subs in TABS:
+        for _, _, sections in subs:
+            for _, _, controls in sections:
+                for c in controls:
+                    collect(c)
     missing = set(ports) - set(used)
     unknown = set(used) - set(ports)
     dupes = set(s for s in used if used.count(s) > 1)

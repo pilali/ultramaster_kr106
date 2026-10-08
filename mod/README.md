@@ -48,14 +48,17 @@ make test            # renders notes, presets, arp, hold through lilv (liblilv-d
 
 ## Panel
 
-Three tabs. No keyboard is drawn; play the synth from a MIDI controller.
+The panel is 460 × 284 px. Three main tabs, each with three sub-tabs (the lit
+LED marks the active one). No keyboard is drawn; play the synth from a MIDI
+controller.
 
-- **VOICE**: DCO, HPF, VCF, VCA, ENV, Chorus. This is the Juno-106 panel.
-- **ARP · LFO · PERFORM**: arpeggiator (with host tempo sync), LFO (trigger
-  button, sync), and performance controls (Hold, assign mode, portamento,
-  bender and its DCO/VCF/LFO depths).
-- **SETUP**: master volume, tuning, transpose, model (Juno-60 / Juno-106),
-  voice count, oscillator mode, VCF oversampling, velocity and retrigger.
+| Tab | Sub-tabs |
+|---|---|
+| **VOICE** | DCO · HPF / VCF · VCA / ENV · CHORUS |
+| **ARP · LFO · PERF** | ARPEGGIO (host tempo sync) / LFO (trigger button, sync) / PERFORMANCE (Hold, assign mode, portamento, bender and its DCO/VCF/LFO depths) |
+| **SETUP** | MASTER · MODEL (volume, tuning, transpose, Juno-60 / Juno-106) / VOICES · KEYS (voice count, oscillator mode, VCF oversampling, velocity, retrigger) / INFO |
+
+Each main tab remembers its last sub-tab.
 
 The LCD in the header shows the last control you moved, as a 7-bit value
 (0–127) like a Juno-106 slider, or as its label for switches.
