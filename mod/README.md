@@ -48,7 +48,7 @@ make test            # renders notes, presets, arp, hold through lilv (liblilv-d
 
 ## Panel
 
-The panel is 460 × 284 px. Three main tabs, each with three sub-tabs (the lit
+The panel is 920 × 568 px (mod-ui shows plugins zoomed out, so it is drawn large). Three main tabs, each with three sub-tabs (the lit
 LED marks the active one). No keyboard is drawn; play the synth from a MIDI
 controller.
 
