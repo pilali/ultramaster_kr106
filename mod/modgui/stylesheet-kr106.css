@@ -18,13 +18,13 @@
 
 .kr106{{{cns}}} {
     position: relative;
-    width: 460px;
-    height: 284px;
+    width: 920px;
+    height: 568px;
     background:
         linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0) 40%),
-        repeating-linear-gradient(90deg, rgba(255,255,255,0.012) 0 1px, rgba(0,0,0,0.015) 1px 3px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.012) 0 2px, rgba(0,0,0,0.015) 2px 6px),
         #2a2a2c;
-    border-radius: 3px;
+    border-radius: 6px;
     font-family: 'KR106 Barlow', 'Barlow Condensed', 'Arial Narrow', 'Liberation Sans Narrow', sans-serif;
     font-style: italic;
     font-weight: 600;
@@ -50,226 +50,226 @@
 
 /* end cheeks (Juno-106: black metal, red accent line) */
 .kr106{{{cns}}} .kr-cheek {
-    position: absolute; top: 0; bottom: 0; width: 12px; z-index: 2; pointer-events: none;
+    position: absolute; top: 0; bottom: 0; width: 24px; z-index: 2; pointer-events: none;
     background: linear-gradient(90deg, #0c0c0d, #2b2b2e 45%, #0c0c0d);
 }
-.kr106{{{cns}}} .kr-cheek-l { left: 0; border-radius: 3px 0 0 3px; }
-.kr106{{{cns}}} .kr-cheek-r { right: 0; border-radius: 0 3px 3px 0; }
+.kr106{{{cns}}} .kr-cheek-l { left: 0; border-radius: 6px 0 0 6px; }
+.kr106{{{cns}}} .kr-cheek-r { right: 0; border-radius: 0 6px 6px 0; }
 
 /* ---- header ---- */
 .kr106{{{cns}}} .kr-header {
-    position: absolute; left: 12px; right: 12px; top: 0; height: 42px;
+    position: absolute; left: 24px; right: 24px; top: 0; height: 84px;
     background: linear-gradient(180deg, #19191b, #0d0d0e);
-    border-bottom: 3px solid #c8201c;
+    border-bottom: 6px solid #c8201c;
     display: flex; align-items: center;
-    padding: 0 12px;
+    padding: 0 24px;
     z-index: 3;
     pointer-events: none;
 }
 .kr106{{{cns}}} .kr-header > * { pointer-events: auto; }
-.kr106{{{cns}}} .kr-power { position: relative; width: 84px; height: 32px; flex: none; }
+.kr106{{{cns}}} .kr-power { position: relative; width: 168px; height: 64px; flex: none; }
 .kr106{{{cns}}} .kr-power-led {
-    position: absolute; left: 2px; top: 11px; width: 10px; height: 10px; border-radius: 50%;
+    position: absolute; left: 4px; top: 22px; width: 20px; height: 20px; border-radius: 50%;
     background: radial-gradient(circle at 35% 30%, #8a3a33, #3a0d0b 70%);
-    box-shadow: 0 0 0 1.5px #000;
+    box-shadow: 0 0 0 3px #000;
 }
 .kr106{{{cns}}} .kr-power-led.on {
     background: radial-gradient(circle at 35% 30%, #ffd6cc, #f01a10 55%, #a00 100%);
-    box-shadow: 0 0 0 1.5px #000, 0 0 8px 2px rgba(255,40,30,0.55);
+    box-shadow: 0 0 0 3px #000, 0 0 16px 4px rgba(255,40,30,0.55);
 }
 .kr106{{{cns}}} .kr-power-sw {
-    position: absolute; left: 18px; top: 5px; width: 18px; height: 22px; cursor: pointer;
-    border-radius: 2px; background: #000; box-shadow: inset 0 0 0 1px #555;
+    position: absolute; left: 36px; top: 10px; width: 36px; height: 44px; cursor: pointer;
+    border-radius: 4px; background: #000; box-shadow: inset 0 0 0 2px #555;
 }
 .kr106{{{cns}}} .kr-power-sw::after {
-    content: ''; position: absolute; left: 3px; right: 3px; top: 3px; height: 9px; border-radius: 1px;
+    content: ''; position: absolute; left: 6px; right: 6px; top: 6px; height: 18px; border-radius: 2px;
     background: linear-gradient(180deg, #e9e9e9, #8d8d8d);
 }
-.kr106{{{cns}}} .kr-power-sw.off::after { top: 10px; background: linear-gradient(180deg, #6d6d6d, #cfcfcf); }
-.kr106{{{cns}}} .kr-power-lbl { position: absolute; left: 40px; top: 9px; font-size: 11px; letter-spacing: 0.5px; }
+.kr106{{{cns}}} .kr-power-sw.off::after { top: 20px; background: linear-gradient(180deg, #6d6d6d, #cfcfcf); }
+.kr106{{{cns}}} .kr-power-lbl { position: absolute; left: 80px; top: 18px; font-size: 22px; letter-spacing: 1px; }
 
-.kr106{{{cns}}} .kr-logo { display: flex; align-items: baseline; margin: 0 0 0 4px; flex: none; }
-.kr106{{{cns}}} .kr-logo-brand { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; color: #c9c9c4; margin-right: 6px; }
-.kr106{{{cns}}} .kr-logo-model { font-size: 25px; font-weight: 700; letter-spacing: 1px; color: #fff; }
+.kr106{{{cns}}} .kr-logo { display: flex; align-items: baseline; margin: 0 0 0 8px; flex: none; }
+.kr106{{{cns}}} .kr-logo-brand { font-size: 20px; font-weight: 600; letter-spacing: 3px; color: #c9c9c4; margin-right: 12px; }
+.kr106{{{cns}}} .kr-logo-model { font-size: 50px; font-weight: 700; letter-spacing: 2px; color: #fff; }
 
 /* ---- navigation: main tabs, then one row of sub-tabs per main tab ---- */
 .kr106{{{cns}}} .kr-nav {
-    position: absolute; left: 12px; right: 12px; top: 45px; height: 56px;
-    padding: 4px 8px 0; z-index: 3;
+    position: absolute; left: 24px; right: 24px; top: 90px; height: 112px;
+    padding: 8px 16px 0; z-index: 3;
     background: linear-gradient(180deg, #1d1d1f, #252527);
-    border-bottom: 1px solid #111;
+    border-bottom: 2px solid #111;
 }
-.kr106{{{cns}}} .kr-tabs { display: flex; height: 25px; }
+.kr106{{{cns}}} .kr-tabs { display: flex; height: 50px; }
 .kr106{{{cns}}} .kr-tab {
     flex: 1; text-align: center;
-    margin: 0 2px; line-height: 23px; font-size: 13px; letter-spacing: 1px; white-space: nowrap;
+    margin: 0 4px; line-height: 46px; font-size: 26px; letter-spacing: 2px; white-space: nowrap;
     color: #bdbdb8; cursor: pointer;
-    border: 1px solid #3a3a3d; border-radius: 2px;
+    border: 2px solid #3a3a3d; border-radius: 4px;
     background: linear-gradient(180deg, #2c2c2f, #1b1b1d);
 }
 .kr106{{{cns}}} .kr-tab:hover { color: #fff; border-color: #6a6a6e; }
 .kr106{{{cns}}} .kr-tab.kr-active {
     color: #fff; border-color: #c8201c;
     background: linear-gradient(180deg, #d42a22, #9e1612);
-    box-shadow: 0 0 6px rgba(220,40,30,0.35);
+    box-shadow: 0 0 12px rgba(220,40,30,0.35);
 }
-.kr106{{{cns}}} .kr-subnav { display: none; height: 22px; margin-top: 4px; }
+.kr106{{{cns}}} .kr-subnav { display: none; height: 44px; margin-top: 8px; }
 .kr106{{{cns}}} .kr-subnav.kr-active { display: flex; }
 .kr106{{{cns}}} .kr-subtab {
     flex: 1; display: flex; align-items: center; justify-content: center;
-    margin: 0 2px; height: 22px; font-size: 11.5px; letter-spacing: 0.8px; white-space: nowrap;
+    margin: 0 4px; height: 44px; font-size: 23px; letter-spacing: 1.6px; white-space: nowrap;
     color: #a9a9a4; cursor: pointer;
-    border-radius: 2px; background: #161617; border: 1px solid #2f2f32;
+    border-radius: 4px; background: #161617; border: 2px solid #2f2f32;
 }
 .kr106{{{cns}}} .kr-subtab:hover { color: #fff; }
 .kr106{{{cns}}} .kr-subtab.kr-active { color: #fff; background: #2e2e31; border-color: #55555a; }
 .kr106{{{cns}}} .kr-subled {
-    width: 7px; height: 7px; border-radius: 50%; margin-right: 6px; flex: none;
-    background: radial-gradient(circle at 35% 30%, #7a2a24, #3a0d0b 70%); box-shadow: 0 0 0 1px #000;
+    width: 14px; height: 14px; border-radius: 50%; margin-right: 12px; flex: none;
+    background: radial-gradient(circle at 35% 30%, #7a2a24, #3a0d0b 70%); box-shadow: 0 0 0 2px #000;
 }
 .kr106{{{cns}}} .kr-subtab.kr-active .kr-subled {
     background: radial-gradient(circle at 35% 30%, #ffd6cc, #f01a10 55%, #a00 100%);
-    box-shadow: 0 0 0 1px #000, 0 0 6px 1px rgba(255,40,30,0.6);
+    box-shadow: 0 0 0 2px #000, 0 0 12px 2px rgba(255,40,30,0.6);
 }
 
 .kr106{{{cns}}} .kr-lcd {
-    width: 150px; height: 30px; padding: 2px 7px; margin-left: auto;
+    width: 300px; height: 60px; padding: 4px 14px; margin-left: auto;
     background: linear-gradient(180deg, #060a06, #0c140c);
-    border: 1px solid #000; border-radius: 2px;
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.9), 0 0 0 1px #333;
+    border: 2px solid #000; border-radius: 4px;
+    box-shadow: inset 0 0 12px rgba(0,0,0,0.9), 0 0 0 2px #333;
     font-family: 'KR106 Segment', monospace; font-style: normal; font-weight: normal;
-    color: #6dff5a; text-shadow: 0 0 4px rgba(90,255,70,0.55);
+    color: #6dff5a; text-shadow: 0 0 8px rgba(90,255,70,0.55);
     overflow: hidden; white-space: nowrap;
 }
-.kr106{{{cns}}} .kr-lcd-name { font-size: 10px; line-height: 12px; opacity: 0.75; }
-.kr106{{{cns}}} .kr-lcd-value { font-size: 13px; line-height: 15px; }
+.kr106{{{cns}}} .kr-lcd-name { font-size: 20px; line-height: 24px; opacity: 0.75; }
+.kr106{{{cns}}} .kr-lcd-value { font-size: 26px; line-height: 30px; }
 
 /* ---- pages & sections ---- */
-.kr106{{{cns}}} .kr-pages { position: absolute; left: 12px; right: 12px; top: 102px; bottom: 0; pointer-events: none; }
+.kr106{{{cns}}} .kr-pages { position: absolute; left: 24px; right: 24px; top: 204px; bottom: 0; pointer-events: none; }
 .kr106{{{cns}}} .kr-page {
     position: absolute; left: 0; top: 0; right: 0; bottom: 0;
     display: flex; align-items: stretch; justify-content: center;
-    padding: 8px 6px 10px;
+    padding: 16px 12px 20px;
     visibility: hidden;
 }
 .kr106{{{cns}}} .kr-page.kr-active { visibility: visible; }
 .kr106{{{cns}}} .kr-section {
     position: relative; display: flex; flex-direction: column;
-    margin: 0 3px; min-width: 52px;
+    margin: 0 6px; min-width: 104px;
     pointer-events: none;
 }
 .kr106{{{cns}}} .kr-sec-title {
-    height: 19px; line-height: 19px; text-align: center;
-    font-size: 15px; font-weight: 700; letter-spacing: 1.5px; color: #fff;
-    border-radius: 1px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -1px 0 rgba(0,0,0,0.25);
+    height: 38px; line-height: 38px; text-align: center;
+    font-size: 30px; font-weight: 700; letter-spacing: 3px; color: #fff;
+    border-radius: 2px;
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.25), inset 0 -2px 0 rgba(0,0,0,0.25);
 }
 .kr106{{{cns}}} .kr-sec-body {
     flex: 1; display: flex; align-items: flex-start; justify-content: center;
-    padding: 6px 6px 0;
+    padding: 12px 12px 0;
     background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0) 30%);
 }
-.kr106{{{cns}}} .kr-sec-foot { height: 4px; border-radius: 1px; }
+.kr106{{{cns}}} .kr-sec-foot { height: 8px; border-radius: 2px; }
 .kr106{{{cns}}} .kr-red .kr-sec-title,  .kr106{{{cns}}} .kr-red .kr-sec-foot  { background: linear-gradient(180deg, #d8261f, #b0160f); }
 .kr106{{{cns}}} .kr-blue .kr-sec-title, .kr106{{{cns}}} .kr-blue .kr-sec-foot { background: linear-gradient(180deg, #2b47c8, #1a2f96); }
 .kr106{{{cns}}} .kr-grey .kr-sec-title, .kr106{{{cns}}} .kr-grey .kr-sec-foot { background: linear-gradient(180deg, #67676b, #48484b); }
 
 .kr106{{{cns}}} .kr-ctl {
     position: relative; display: flex; flex-direction: column; align-items: center;
-    margin: 0 2px; pointer-events: auto; z-index: 4;
+    margin: 0 4px; pointer-events: auto; z-index: 4;
 }
 .kr106{{{cns}}} .kr-lbl {
-    height: 15px; line-height: 15px; font-size: 12px; letter-spacing: 0.6px; white-space: nowrap;
+    height: 30px; line-height: 30px; font-size: 24px; letter-spacing: 1.2px; white-space: nowrap;
     color: #f2f2ee; text-align: center;
 }
-.kr106{{{cns}}} .kr-lbl-below { margin-top: 2px; font-size: 11px; }
+.kr106{{{cns}}} .kr-lbl-below { margin-top: 4px; font-size: 22px; }
 
 /* film strips: frame width = element width; images are 2x, hence background-size */
 .kr106{{{cns}}} .kr-fader-wrap { position: relative; }
 .kr106{{{cns}}} .kr-fader {
-    width: 30px; height: 116px; cursor: ns-resize;
+    width: 60px; height: 232px; cursor: ns-resize;
     background-image: url(/resources/fader.png{{{ns}}});
-    background-size: 3840px 116px;
+    background-size: 7680px 232px;
     background-repeat: no-repeat;
 }
-.kr106{{{cns}}} .kr-fader-bi { background-image: url(/resources/fader-bipolar.png{{{ns}}}); background-size: 3870px 116px; }
-.kr106{{{cns}}} .kr-fader-hpf { background-image: url(/resources/fader-hpf.png{{{ns}}}); background-size: 120px 116px; }
+.kr106{{{cns}}} .kr-fader-bi { background-image: url(/resources/fader-bipolar.png{{{ns}}}); background-size: 7740px 232px; }
+.kr106{{{cns}}} .kr-fader-hpf { background-image: url(/resources/fader-hpf.png{{{ns}}}); background-size: 240px 232px; }
 .kr106{{{cns}}} .kr-hpf-marks {
-    position: absolute; left: 31px; top: 6px; height: 100px;
+    position: absolute; left: 62px; top: 12px; height: 200px;
     display: flex; flex-direction: column; justify-content: space-between;
-    font-size: 10px; color: #bdbdb8; line-height: 10px;
+    font-size: 20px; color: #bdbdb8; line-height: 20px;
 }
 
-.kr106{{{cns}}} .kr-sw-ctl { margin: 0 3px; }
-.kr106{{{cns}}} .kr-sw-wrap { display: flex; align-items: center; margin-top: 18px; }
+.kr106{{{cns}}} .kr-sw-ctl { margin: 0 6px; }
+.kr106{{{cns}}} .kr-sw-wrap { display: flex; align-items: center; margin-top: 36px; }
 .kr106{{{cns}}} .kr-sw {
-    width: 16px; height: 44px; cursor: pointer;
+    width: 32px; height: 88px; cursor: pointer;
     background-repeat: no-repeat;
 }
-.kr106{{{cns}}} .kr-sw2 { background-image: url(/resources/switch2.png{{{ns}}}); background-size: 32px 44px; }
-.kr106{{{cns}}} .kr-sw3 { background-image: url(/resources/switch3.png{{{ns}}}); background-size: 48px 44px; }
+.kr106{{{cns}}} .kr-sw2 { background-image: url(/resources/switch2.png{{{ns}}}); background-size: 64px 88px; }
+.kr106{{{cns}}} .kr-sw3 { background-image: url(/resources/switch3.png{{{ns}}}); background-size: 96px 88px; }
 .kr106{{{cns}}} .kr-sw-labels {
     display: flex; flex-direction: column; justify-content: space-between;
-    height: 44px; margin-left: 4px; padding: 3px 0;
-    font-size: 10.5px; line-height: 11px; color: #e6e6e0; white-space: nowrap;
+    height: 88px; margin-left: 8px; padding: 6px 0;
+    font-size: 21px; line-height: 22px; color: #e6e6e0; white-space: nowrap;
 }
-.kr106{{{cns}}} .kr-sw-labels2 { padding: 6px 0; }
+.kr106{{{cns}}} .kr-sw-labels2 { padding: 12px 0; }
 
-.kr106{{{cns}}} .kr-hsw-wrap { display: flex; align-items: center; margin-top: 38px; font-size: 13px; }
-.kr106{{{cns}}} .kr-hsw-wrap span { margin: 0 6px; }
+.kr106{{{cns}}} .kr-hsw-wrap { display: flex; align-items: center; margin-top: 76px; font-size: 26px; }
+.kr106{{{cns}}} .kr-hsw-wrap span { margin: 0 12px; }
 .kr106{{{cns}}} .kr-hsw {
-    width: 44px; height: 16px; cursor: pointer;
-    background-image: url(/resources/switch2h.png{{{ns}}}); background-size: 88px 16px;
+    width: 88px; height: 32px; cursor: pointer;
+    background-image: url(/resources/switch2h.png{{{ns}}}); background-size: 176px 32px;
     background-repeat: no-repeat;
 }
 
-.kr106{{{cns}}} .kr-pad-ctl { margin: 15px 3px 0; }
+.kr106{{{cns}}} .kr-pad-ctl { margin: 30px 6px 0; }
 .kr106{{{cns}}} .kr-pad {
-    width: 30px; height: 46px; cursor: pointer;
-    background-repeat: no-repeat; background-size: 60px 46px;
+    width: 60px; height: 92px; cursor: pointer;
+    background-repeat: no-repeat; background-size: 120px 92px;
 }
 .kr106{{{cns}}} .kr-pad-cream  { background-image: url(/resources/pad-cream.png{{{ns}}}); }
 .kr106{{{cns}}} .kr-pad-yellow { background-image: url(/resources/pad-yellow.png{{{ns}}}); }
 .kr106{{{cns}}} .kr-pad-orange { background-image: url(/resources/pad-orange.png{{{ns}}}); }
 .kr106{{{cns}}} .kr-pad-grey   { background-image: url(/resources/pad-grey.png{{{ns}}}); }
-.kr106{{{cns}}} .kr-chorus.kr-on { background-position: -30px 0; }
+.kr106{{{cns}}} .kr-chorus.kr-on { background-position: -60px 0; }
 .kr106{{{cns}}} .kr-stack { display: flex; flex-direction: column; pointer-events: none; }
-.kr106{{{cns}}} .kr-stack .kr-pad-ctl { margin-top: 0; margin-bottom: 4px; }
-.kr106{{{cns}}} .kr-stack .kr-pad-ctl:first-child { margin-top: 2px; }
+.kr106{{{cns}}} .kr-stack .kr-pad-ctl { margin-top: 0; margin-bottom: 8px; }
+.kr106{{{cns}}} .kr-stack .kr-pad-ctl:first-child { margin-top: 4px; }
 
 /* LCD-style selector (custom-select widget) */
-.kr106{{{cns}}} .kr-sel-ctl { margin: 0 4px; }
+.kr106{{{cns}}} .kr-sel-ctl { margin: 0 8px; }
 .kr106{{{cns}}} .kr-select {
-    position: relative; height: 24px; margin-top: 30px; cursor: pointer;
+    position: relative; height: 48px; margin-top: 60px; cursor: pointer;
     background: linear-gradient(180deg, #060a06, #0c140c);
-    border: 1px solid #000; border-radius: 2px;
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.9), 0 0 0 1px #3a3a3d;
+    border: 2px solid #000; border-radius: 4px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.9), 0 0 0 2px #3a3a3d;
     font-family: 'KR106 Segment', monospace; font-style: normal; font-weight: normal;
-    color: #6dff5a; text-shadow: 0 0 4px rgba(90,255,70,0.5);
+    color: #6dff5a; text-shadow: 0 0 8px rgba(90,255,70,0.5);
 }
 .kr106{{{cns}}} .kr-select::after {
-    content: ''; position: absolute; right: 5px; top: 9px;
-    border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid #4fbf42;
+    content: ''; position: absolute; right: 10px; top: 18px;
+    border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 10px solid #4fbf42;
 }
 .kr106{{{cns}}} .kr-select-value {
-    font-size: 11px; line-height: 22px; padding: 0 16px 0 6px;
+    font-size: 22px; line-height: 44px; padding: 0 32px 0 12px;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-transform: uppercase;
 }
 .kr106{{{cns}}} .kr-select .mod-enumerated-list {
-    display: none; position: absolute; left: -1px; top: 24px; min-width: 100%; max-height: 150px;
+    display: none; position: absolute; left: -2px; top: 48px; min-width: 100%; max-height: 300px;
     overflow-y: auto; z-index: 50;
-    background: #070b07; border: 1px solid #2e5a28; box-shadow: 0 6px 14px rgba(0,0,0,0.7);
+    background: #070b07; border: 2px solid #2e5a28; box-shadow: 0 12px 28px rgba(0,0,0,0.7);
 }
 .kr106{{{cns}}} .kr-select .mod-enumerated-list div {
-    font-size: 11px; line-height: 20px; padding: 0 6px; white-space: nowrap; color: #5fd84f;
+    font-size: 22px; line-height: 40px; padding: 0 12px; white-space: nowrap; color: #5fd84f;
 }
 .kr106{{{cns}}} .kr-select .mod-enumerated-list div:hover { background: #163015; color: #b8ffae; }
 .kr106{{{cns}}} .kr-select .mod-enumerated-list div.selected { background: #245a1f; color: #e6ffe0; }
 
 .kr106{{{cns}}} .kr-info {
-    width: 250px; margin-top: 8px; padding: 8px 10px; pointer-events: auto; z-index: 4;
-    font-size: 12.5px; line-height: 17px; font-weight: 600; color: #d6d6d0;
-    background: rgba(0,0,0,0.25); border: 1px solid #3a3a3d; border-radius: 2px;
+    width: 500px; margin-top: 16px; padding: 16px 20px; pointer-events: auto; z-index: 4;
+    font-size: 25px; line-height: 34px; font-weight: 600; color: #d6d6d0;
+    background: rgba(0,0,0,0.25); border: 2px solid #3a3a3d; border-radius: 4px;
 }
 .kr106{{{cns}}} .kr-info b { color: #fff; font-weight: 700; }
 
@@ -278,4 +278,4 @@
 
 /* MOD jacks sit outside the panel */
 .kr106{{{cns}}} .mod-pedal-input,
-.kr106{{{cns}}} .mod-pedal-output { top: 120px; }
+.kr106{{{cns}}} .mod-pedal-output { top: 240px; }

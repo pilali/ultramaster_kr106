@@ -6,8 +6,11 @@
 ports.json is written by kr106_mod_ttlgen (see the Makefile `modgui` target).
 Writes into modgui/:
   icon-kr106.html, stylesheet-kr106.css, script-kr106.js and the film-strip
-  images (faders, switches, buttons). Everything is drawn here at 2x with 4x
+  images (faders, switches, buttons). Everything is drawn here with 4x
   supersampling, in the style of the Roland Juno-60/106 front panel.
+
+Sizes below are in design units. The stylesheet multiplies every length by
+UI_SCALE, so with DPR = UI_SCALE the images are exactly 1:1 on screen.
 
 The generated files are committed, so building the plugin needs neither
 Python nor Pillow. Requires: Pillow.
@@ -15,13 +18,15 @@ Python nor Pillow. Requires: Pillow.
 
 import json
 import os
+import re
 import sys
 
 from PIL import Image, ImageDraw, ImageFilter
 
-DPR = 2            # image pixels per CSS pixel
+UI_SCALE = 2       # CSS pixels per design unit (mod-ui shows plugins zoomed out)
+DPR = 2            # image pixels per design unit
 SS = 4             # supersampling factor while drawing
-K = DPR * SS       # drawing pixels per CSS pixel
+K = DPR * SS       # drawing pixels per design unit
 
 
 # ----------------------------------------------------------------------------
@@ -416,11 +421,11 @@ def control_html(c, ports):
         options = ''.join('<div mod-role="enumeration-option" mod-port-value="%s">%s</div>'
                           % (('%g' % v), esc(lbl.upper())) for v, lbl in opts)
         return ('<div class="kr-ctl kr-sel-ctl"><div class="kr-lbl">%s</div>'
-                '<div class="mod-enumerated kr-select" style="width:%dpx" mod-role="input-control-port" '
+                '<div class="mod-enumerated kr-select" style="width:%gpx" mod-role="input-control-port" '
                 'mod-port-symbol="%s" mod-widget="custom-select">'
                 '<div class="kr-select-value" mod-role="input-control-value" mod-port-symbol="%s"></div>'
                 '<div class="mod-enumerated-list kr-select-list">%s</div></div></div>'
-                % (esc(c['label']), c['width'], c['symbol'], c['symbol'], options))
+                % (esc(c['label']), c['width'] * UI_SCALE, c['symbol'], c['symbol'], options))
     if t == 'chorus':
         return ''.join(
             '<div class="kr-ctl kr-pad-ctl"><div class="kr-pad kr-pad-%s kr-chorus" data-chorus="%s"></div>'
@@ -950,6 +955,7 @@ def main():
     css = CSS
     for k, v in subst.items():
         css = css.replace(k, str(v))
+    css = re.sub(r'(\d+(?:\.\d+)?)px', lambda m: '%gpx' % (float(m.group(1)) * UI_SCALE), css)
     with open(os.path.join(out, 'stylesheet-kr106.css'), 'w') as f:
         f.write(css)
 
