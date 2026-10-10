@@ -102,8 +102,8 @@ layout (`tools/gen_modgui.py`):
 make modgui          # needs python3 + Pillow
 ```
 
-The faders, switches, buttons and LEDs are drawn by the script at 2x with
-supersampling. `screenshot-kr106.png` and `thumbnail-kr106.png` are captures
+The faders, switches, buttons and LEDs are drawn by the script with
+supersampling, at the panel's on-screen resolution (`UI_SCALE` sets the size). `screenshot-kr106.png` and `thumbnail-kr106.png` are captures
 of the panel rendered in mod-ui.
 
 Only append new ports at the end of `kControlPorts`. Saved pedalboards store
