@@ -48,7 +48,7 @@ make test            # renders notes, presets, arp, hold through lilv (liblilv-d
 
 ## Panel
 
-The panel is 460 × 284 px. Three main tabs, each with three sub-tabs (the lit
+The panel is 920 × 568 px (mod-ui shows plugins zoomed out, so it is drawn large). Three main tabs, each with three sub-tabs (the lit
 LED marks the active one). No keyboard is drawn; play the synth from a MIDI
 controller.
 
@@ -102,8 +102,8 @@ layout (`tools/gen_modgui.py`):
 make modgui          # needs python3 + Pillow
 ```
 
-The faders, switches, buttons and LEDs are drawn by the script at 2x with
-supersampling. `screenshot-kr106.png` and `thumbnail-kr106.png` are captures
+The faders, switches, buttons and LEDs are drawn by the script with
+supersampling, at the panel's on-screen resolution (`UI_SCALE` sets the size). `screenshot-kr106.png` and `thumbnail-kr106.png` are captures
 of the panel rendered in mod-ui.
 
 Only append new ports at the end of `kControlPorts`. Saved pedalboards store
