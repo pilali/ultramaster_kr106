@@ -97,6 +97,12 @@ public:
   // MIDI event times, so the host block size never reaches the engine.
   static constexpr int kMaxChunk = 256;
   static constexpr int kFadeInTotal = 64;
+  // The engine has no output limiter and runs hot: at Volume 0.5 a 6-note
+  // chord peaks at +8 dBFS on a median factory patch (+14 dB on the hottest
+  // 10 %). A DAW keeps that in float, but under MOD it hits the converter and
+  // clips hard. -12 dB here gives the MOD build real headroom; Volume keeps
+  // its full range on top. Applied after the chorus, so the tone is unchanged.
+  static constexpr float kOutputTrim = 0.25f;
 
   KR106Mod(double sampleRate, LV2_URID_Map* map)
     : mSampleRate(sampleRate)
@@ -188,7 +194,7 @@ private:
           applyPort(i, portValue(i));
       // Snap the level smoothers to their targets so the first block
       // doesn't ramp down from unity (audible as a loud first note).
-      mDSP.mMasterVol = mMasterVol * mMasterVol;
+      mDSP.mMasterVol = mMasterVol * mMasterVol * kOutputTrim;
       mDSP.mMasterVolSmooth = mDSP.mMasterVol;
       mDSP.mVcaLevelSmooth = mDSP.mVcaLevel;
       mNeedFullPush = false;
@@ -424,7 +430,7 @@ private:
     std::memset(outL, 0, sizeof(float) * static_cast<size_t>(n));
     std::memset(outR, 0, sizeof(float) * static_cast<size_t>(n));
     float* outputs[2] = { outL, outR };
-    mDSP.mMasterVol = mMasterVol * mMasterVol; // audio taper (squared)
+    mDSP.mMasterVol = mMasterVol * mMasterVol * kOutputTrim; // audio taper (squared)
     mDSP.ProcessBlock(nullptr, outputs, 2, n);
 
     if (mPlaying)
